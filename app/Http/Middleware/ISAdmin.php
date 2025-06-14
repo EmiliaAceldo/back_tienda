@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ISAdmin
+class IsAdmin
 {
     /**
      * Handle an incoming request.
@@ -15,14 +15,12 @@ class ISAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-       // Verificar si el usuario es un administrador
-       if ($request->user() && $request->user()->rol === 'admin') {
+        // Verificar si el usuario es un administrador
+        if ($request->user() && $request->user()->rol === 'admin') {
             return $next($request);
         }
 
         // Si no es administrador, retornar un error 403
         return response()->json(['message' => 'Acceso denegado'], 403);
-           
-       }
-    
+    }
 }
